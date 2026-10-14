@@ -148,6 +148,7 @@ label {
 
 input[type="text"],
 input[type="email"],
+input[type="tel"],
 select {
     width: 100%;
     font: inherit;
@@ -312,4 +313,10 @@ button[type="submit"]:active { transform: translateY(0); }
 @media (max-width: 520px) {
     .card { padding: 30px 22px; }
     .row { grid-template-columns: 1fr; }
+}
+
+
+.field:has(select[required]) label::after {
+    content: " *";
+    color: var(--aqua-sky);
 }
