@@ -51,7 +51,11 @@
 <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dak00001Ex1m8" method="POST">
 
 <input type=hidden name="oid" value="00Dak00001Ex1m8">
-<input type=hidden name="retURL" value="http://">
+<input type=hidden id="retURL" name="retURL" value="https://chaoukat99.github.io/AuqafinaResource/thank-you.html">
+<script>
+    // Salesforce needs an absolute URL, so build it from wherever this page is hosted.
+    document.getElementById("retURL").value = new URL("thank-you.html", location.href).href;
+</script>
 
 <!--  ----------------------------------------------------------------------  -->
 <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
