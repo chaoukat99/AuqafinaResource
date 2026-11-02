@@ -360,9 +360,22 @@
 
 </main>
 
-<svg class="waves" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
-    <path class="wave w1" d="M0,100 C240,160 480,40 720,100 C960,160 1200,40 1440,100 L1440,200 L0,200 Z"/>
-    <path class="wave w2" d="M0,130 C240,80 480,180 720,130 C960,80 1200,180 1440,130 L1440,200 L0,200 Z"/>
+<svg class="waves" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+        <linearGradient id="sea-water" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="110">
+            <stop offset="0"/>
+            <stop offset="0.15"/>
+            <stop offset="0.5"/>
+            <stop offset="1"/>
+        </linearGradient>
+        <!-- one wavelength = 480 units: sharp crest + wide flat trough, repeated 9x -->
+        <path id="wave" fill="url(#sea-water)" vector-effect="non-scaling-stroke"
+              d="M-480 0 c60 14 130 48 240 48 c110 0 180-34 240-48 c60 14 130 48 240 48 c110 0 180-34 240-48 c60 14 130 48 240 48 c110 0 180-34 240-48 c60 14 130 48 240 48 c110 0 180-34 240-48 c60 14 130 48 240 48 c110 0 180-34 240-48 c60 14 130 48 240 48 c110 0 180-34 240-48 c60 14 130 48 240 48 c110 0 180-34 240-48 c60 14 130 48 240 48 c110 0 180-34 240-48 c60 14 130 48 240 48 c110 0 180-34 240-48 V1000 H-480 Z"/>
+    </defs>
+    <g class="layer far"><g class="swell"><use class="wave" href="#wave"/></g></g>
+    <g class="layer mid"><g class="swell"><use class="wave" href="#wave"/></g></g>
+    <g class="layer near"><g class="swell"><use class="wave" href="#wave"/></g></g>
+    <g class="layer front"><g class="swell"><use class="wave" href="#wave"/></g></g>
 </svg>
 </body>
 </html>

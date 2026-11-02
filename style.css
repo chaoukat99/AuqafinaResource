@@ -183,7 +183,8 @@ select {
 }
 
 /* required marker */
-.field:has(input[required]) label::after {
+.field:has(input[required]) label::after,
+.field:has(select[required]) label::after {
     content: " *";
     color: var(--aqua-sky);
 }
@@ -311,21 +312,72 @@ button[type="submit"]:active { transform: translateY(0); }
 .bubble:nth-child(7) { left: 86%; width: 26px; height: 26px; animation-duration: 15s; animation-delay: 5s; }
 .bubble:nth-child(8) { left: 94%; width: 16px; height: 16px; animation-duration: 11s; animation-delay: 7s; }
 
-/* ---------- Waves ---------- */
+/* ---------- Sea waves ----------
+   One wave shape (#wave in the HTML) is drawn at 4 distances.
+   Far layers sit higher on screen and are smaller, slower and fainter;
+   that difference in speed (parallax) is what the eye reads as depth.
+   ------------------------------------------------------------------ */
 
 .waves {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 140px;
+    height: clamp(150px, 24vh, 280px);
     z-index: 0;
     pointer-events: none;
+    stroke-linejoin: round;
 }
 
-.wave { animation: sway 8s ease-in-out infinite alternate; }
-.w1 { fill: rgba(79, 179, 255, 0.18); }
-.w2 { fill: rgba(255, 255, 255, 0.10); animation-duration: 11s; animation-direction: alternate-reverse; }
+/* Water colour, top to bottom: light caught on the crest -> clear blue -> deep water.
+   The bright band is thin (0-15%) so only the tip of each wave shines, like real sea. */
+#sea-water stop:nth-child(1) { stop-color: #b8e6ff; }
+#sea-water stop:nth-child(2) { stop-color: #4aa8f5; }
+#sea-water stop:nth-child(3) { stop-color: #1d5fd0; }
+#sea-water stop:nth-child(4) { stop-color: var(--aqua-deep); }
+
+/* One row of settings per depth.
+   --y       height of the waterline (viewBox units: 0 = top, 320 = bottom)
+   --sx/--sy wavelength / wave height (perspective: far waves look smaller)
+   --alpha   far water fades into the background haze
+   --drift   time to travel one wavelength (far = slow, near = fast)
+   --swell   time for one rise (or fall) of the swell
+   --dir     the mid layer runs against the others = cross-sea chop */
+.layer.far   { --y: 118px; --sx: 0.55; --sy: 0.32; --alpha: 0.45; --drift: 28s; --swell: 7s;   --delay: -3s; }
+.layer.mid   { --y: 150px; --sx: 0.75; --sy: 0.5;  --alpha: 0.6;  --drift: 21s; --swell: 5.5s; --delay: -8s; --dir: reverse; }
+.layer.near  { --y: 190px; --sx: 1;    --sy: 0.75; --alpha: 0.85; --drift: 15s; --swell: 6.5s; --delay: -5s; }
+.layer.front { --y: 232px; --sx: 1.35; --sy: 1;    --alpha: 1;    --drift: 10s; --swell: 4.8s; --delay: -1s; }
+
+.layer {
+    transform-origin: 0 0;
+    transform: translate(0, var(--y)) scale(var(--sx), var(--sy));
+    opacity: var(--alpha);
+}
+
+/* Foam line on the crests, only on the waves close enough to see it */
+.layer.near  { stroke: rgba(255, 255, 255, 0.3);  stroke-width: 1.2; }
+.layer.front { stroke: rgba(255, 255, 255, 0.55); stroke-width: 1.6; }
+
+/* Swell: the whole layer slowly rises and falls */
+.layer .swell {
+    animation: wave-swell var(--swell) ease-in-out var(--delay) infinite alternate;
+}
+
+/* Drift: the wave travels sideways at a constant speed (linear),
+   so the end of each loop lines up with the start - no visible jump */
+.layer .wave {
+    animation: wave-drift var(--drift) linear var(--delay) infinite var(--dir, normal);
+}
+
+@keyframes wave-drift {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-480px); }   /* = exactly one wavelength of #wave */
+}
+
+@keyframes wave-swell {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-10px); }
+}
 
 /* ---------- Animations ---------- */
 
@@ -334,11 +386,6 @@ button[type="submit"]:active { transform: translateY(0); }
     10%  { opacity: 1; }
     50%  { transform: translateY(-55vh) translateX(20px); }
     100% { transform: translateY(-115vh) translateX(-10px); opacity: 0; }
-}
-
-@keyframes sway {
-    from { transform: translateX(-40px); }
-    to   { transform: translateX(40px); }
 }
 
 @keyframes rise {
@@ -367,10 +414,4 @@ button[type="submit"]:active { transform: translateY(0); }
 @media (max-width: 520px) {
     .card { padding: 30px 22px; }
     .row { grid-template-columns: 1fr; }
-}
-
-
-.field:has(select[required]) label::after {
-    content: " *";
-    color: var(--aqua-sky);
 }
