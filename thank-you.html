@@ -6,21 +6,28 @@
     <title>Aquafina | Thank You</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-<div class="ocean" aria-hidden="true">
-    <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
-    <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
-    <span class="bubble"></span><span class="bubble"></span>
-</div>
+<svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-mountains" viewBox="0 0 160 64">
+        <path style="fill:var(--mk-light)" d="M2 64 46 22l-4 42z"/>
+        <path style="fill:var(--mk-mid)" d="M46 22l42 42H42z"/>
+        <path style="fill:var(--mk-mid)" d="M78 64l42-38-4 38z"/>
+        <path style="fill:var(--mk-dark)" d="M120 26l38 38h-42z"/>
+        <path style="fill:var(--mk-light)" d="M34 64 84 2l-4 62z"/>
+        <path style="fill:var(--mk-dark)" d="M84 2l44 62H80z"/>
+        <path style="fill:var(--mk-red)" d="M84 2l13 18.5-6-2.5-5 5-3.2-2.5z"/>
+    </symbol>
+    <symbol id="i-drop-solid" viewBox="0 0 24 24"><path d="M12 2.5c-.4 0-.7.2-.9.5C9.6 5.3 5.5 10.6 5.5 14.6a6.5 6.5 0 0 0 13 0c0-4-4.1-9.3-5.6-11.6-.2-.3-.5-.5-.9-.5z"/></symbol>
+</svg>
 
 <main class="page page-single">
 
     <section class="card thanks">
-        <img class="logo" src="./logo.png" alt="Aquafina">
+        <svg class="card-mark" aria-hidden="true"><use href="#i-mountains"/></svg>
 
         <div class="check" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -30,16 +37,12 @@
 
         <h2>Thank you!</h2>
         <p class="sub">Your request has been received. Our team will get back to you shortly with wholesale pricing and delivery options.</p>
+        <div class="divider" aria-hidden="true"><svg class="ico"><use href="#i-drop-solid"/></svg></div>
 
         <a class="btn" href="./index.html">Back to home</a>
     </section>
 
 </main>
-
-<svg class="waves" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
-    <path class="wave w1" d="M0,100 C240,160 480,40 720,100 C960,160 1200,40 1440,100 L1440,200 L0,200 Z"/>
-    <path class="wave w2" d="M0,130 C240,80 480,180 720,130 C960,80 1200,180 1440,130 L1440,200 L0,200 Z"/>
-</svg>
 
 </body>
 </html>

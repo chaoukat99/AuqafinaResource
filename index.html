@@ -5,42 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
     <title>Aquafina | Get in Touch</title>
+    <meta name="description" content="Get in touch with Aquafina. Pure Water. Better Life.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="./assets/mountain-lake.jpg">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-<div class="ocean" aria-hidden="true">
-    <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
-    <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
-    <span class="bubble"></span><span class="bubble"></span>
-</div>
+<!-- Icon sprite: each icon is drawn once here and reused with <use href="#id"> -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="swoosh-grad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#8fd3ff" stop-opacity="0"/>
+            <stop offset=".5" stop-color="#8fd3ff"/>
+            <stop offset="1" stop-color="#d8f1ff" stop-opacity=".3"/>
+        </linearGradient>
+    </defs>
+    <!-- brand mark -->
+    <symbol id="i-mountains" viewBox="0 0 160 64">
+        <path style="fill:var(--mk-light)" d="M2 64 46 22l-4 42z"/>
+        <path style="fill:var(--mk-mid)" d="M46 22l42 42H42z"/>
+        <path style="fill:var(--mk-mid)" d="M78 64l42-38-4 38z"/>
+        <path style="fill:var(--mk-dark)" d="M120 26l38 38h-42z"/>
+        <path style="fill:var(--mk-light)" d="M34 64 84 2l-4 62z"/>
+        <path style="fill:var(--mk-dark)" d="M84 2l44 62H80z"/>
+        <path style="fill:var(--mk-red)" d="M84 2l13 18.5-6-2.5-5 5-3.2-2.5z"/>
+    </symbol>
+    <!-- solid field icons -->
+    <symbol id="i-person" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></symbol>
+    <symbol id="i-drop-solid" viewBox="0 0 24 24"><path d="M12 2.5c-.4 0-.7.2-.9.5C9.6 5.3 5.5 10.6 5.5 14.6a6.5 6.5 0 0 0 13 0c0-4-4.1-9.3-5.6-11.6-.2-.3-.5-.5-.9-.5z"/></symbol>
+    <!-- line icons -->
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+</svg>
 
 <main class="page">
 
-    <section class="hero">
-        <img class="logo" src="./logo.png" alt="Aquafina">
-        <h1>Pure water.<br><span>Perfect taste.</span></h1>
-        <p>Bring Aquafina to your business. Tell us a little about you and our team will reach out with wholesale pricing and delivery options.</p>
-        <ul class="perks">
-            <li>Purified through a rigorous 7-step process</li>
-            <li>Flexible bulk orders for any size business</li>
-            <li>Fast, reliable delivery to your door</li>
+    <!-- Left: brand + headline -->
+    <section class="intro" aria-labelledby="hero-title">
+        <div class="brand">
+            <svg class="brand-mark" aria-hidden="true"><use href="#i-mountains"/></svg>
+            <img class="brand-logo" src="./assets/logo-white.png" width="800" height="188" alt="Aquafina">
+            <p class="brand-tagline">Pure Water. Better Life.</p>
+        </div>
+
+        <h1 id="hero-title">Stay Hydrated, <span>Live Healthier</span></h1>
+        <svg class="swoosh" viewBox="0 0 300 22" aria-hidden="true"><path d="M2 20C80 8 190 1 298 4 190 6 90 13 2 20z" fill="url(#swoosh-grad)"/></svg>
+
+        <ul class="features">
+            <li><span class="feature-icon"><svg class="ico ico-line" aria-hidden="true"><use href="#i-drop"/></svg></span><span>Pure &amp; Safe Water</span></li>
+            <li><span class="feature-icon"><svg class="ico ico-line" aria-hidden="true"><use href="#i-heart"/></svg></span><span>For a Healthier You</span></li>
+            <li><span class="feature-icon"><svg class="ico ico-line" aria-hidden="true"><use href="#i-leaf"/></svg></span><span>A Greener Tomorrow</span></li>
         </ul>
     </section>
 
-    <section class="card">
-        <h2>Become a partner</h2>
-        <p class="sub">Fill in the form &mdash; it only takes a minute.</p>
+    <!-- Middle: bottle splashing into the lake -->
+    <div class="visual" aria-hidden="true">
+        <picture>
+            <source type="image/webp" srcset="./assets/bottle-splash.webp">
+            <img class="bottle" src="./assets/bottle-splash.png" width="800" height="619" alt="" fetchpriority="high">
+        </picture>
+    </div>
 
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
-<!--  If necessary, please modify the charset parameter to specify the        -->
-<!--  character set of your HTML page.                                        -->
-<!--  ----------------------------------------------------------------------  -->
-
+    <!-- Right: Salesforce Web-to-Lead form -->
+    <section class="card" aria-labelledby="form-title">
+        <svg class="card-mark" aria-hidden="true"><use href="#i-mountains"/></svg>
+        <h2 id="form-title">Get in Touch with Aquafina</h2>
+        <p class="sub">Fill out the form below and our team will get back to you soon.</p>
+        <div class="divider" aria-hidden="true"><svg class="ico"><use href="#i-drop-solid"/></svg></div>
 
 <!--  ----------------------------------------------------------------------  -->
 <!--  NOTE: Please add the following <FORM> element to your page.             -->
@@ -62,295 +107,309 @@
 <!--  <input type="hidden" name="debugEmail" value="chaoukatweb@gmail.com">   -->
 <!--  ----------------------------------------------------------------------  -->
 
-<div class="row">
-    <div class="field">
-        <label for="first_name">Prénom</label>
-        <input id="first_name" maxlength="40" name="first_name" type="text" placeholder="Jane" />
-    </div>
-    <div class="field">
-        <label for="last_name">Nom</label>
-        <input id="last_name" maxlength="80" name="last_name" type="text" placeholder="Doe" required />
-    </div>
-</div>
-
-<div class="row">
-    <div class="field">
-        <label for="email">Adresse e-mail</label>
-        <input id="email" maxlength="80" name="email" type="email" placeholder="jane@company.com" />
-    </div>
-    <div class="field">
-        <label for="mobile">Téléphone mobile</label>
-        <input id="mobile" maxlength="40" name="mobile" type="tel" placeholder="+212 6 00 00 00 00" />
-    </div>
+<div class="field">
+    <svg class="ico" aria-hidden="true"><use href="#i-person"/></svg>
+    <label for="first_name">First Name</label>
+    <input id="first_name" maxlength="40" name="first_name" type="text" autocomplete="given-name" placeholder="Jane" />
 </div>
 
 <div class="field">
-    <label for="company">Société</label>
-    <input id="company" maxlength="40" name="company" type="text" placeholder="Your company" required />
+    <svg class="ico" aria-hidden="true"><use href="#i-person"/></svg>
+    <label for="last_name">Last Name</label>
+    <input id="last_name" maxlength="80" name="last_name" type="text" autocomplete="family-name" placeholder="Doe" required />
 </div>
 
 <div class="field">
-    <label for="industry">Secteur d'activité </label>
-    <select id="industry" name="industry" required><option value="">- Aucun -</option>
+    <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>
+    <label for="email">Email Address</label>
+    <input id="email" maxlength="80" name="email" type="email" autocomplete="email" placeholder="jane@company.com" />
+</div>
 
+<div class="field">
+    <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
+    <label for="mobile">Phone Number</label>
+    <input id="mobile" maxlength="40" name="mobile" type="tel" autocomplete="tel" placeholder="+212 6 00 00 00 00" />
+</div>
 
+<div class="field">
+    <svg class="ico" aria-hidden="true"><use href="#i-building"/></svg>
+    <label for="company">Company</label>
+    <input id="company" maxlength="40" name="company" type="text" autocomplete="organization" placeholder="Your company" required />
+</div>
 
-<option value="Distributors">Distributors</option>
-<option value="Restaurateurs">Restaurateurs</option>
+<div class="field">
+    <svg class="ico" aria-hidden="true"><use href="#i-briefcase"/></svg>
+    <label for="industry">I am a</label>
+    <select id="industry" name="industry" required>
+<option value="">Select…</option>
+<option value="Distributors">Distributor</option>
+<option value="Restaurateurs">Restaurateur</option>
 <option value="Other">Other</option>
-
 </select>
 </div>
 
 <div class="field">
-    <label for="country_code">Pays</label>
-    <select id="country_code" name="country_code"><option value="">- Aucun -</option><option value="AF">Afghanistan</option>
-<option value="ZA">Afrique du Sud</option>
-<option value="AL">Albanie</option>
-<option value="DZ">Algérie</option>
-<option value="DE">Allemagne</option>
-<option value="AD">Andorre</option>
+    <svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg>
+    <label for="country_code">Country</label>
+    <select id="country_code" name="country_code" autocomplete="country"><option value="">Select a country</option>
+<option value="AF">Afghanistan</option>
+<option value="AX">Åland Islands</option>
+<option value="AL">Albania</option>
+<option value="DZ">Algeria</option>
+<option value="AD">Andorra</option>
 <option value="AO">Angola</option>
 <option value="AI">Anguilla</option>
-<option value="AQ">Antarctique</option>
-<option value="AG">Antigua et Barbuda</option>
-<option value="SA">Arabie Saoudite</option>
-<option value="AR">Argentine</option>
-<option value="AM">Arménie</option>
+<option value="AQ">Antarctica</option>
+<option value="AG">Antigua &amp; Barbuda</option>
+<option value="AR">Argentina</option>
+<option value="AM">Armenia</option>
 <option value="AW">Aruba</option>
-<option value="AU">Australie</option>
-<option value="AT">Autriche</option>
-<option value="AZ">Azerbaïdjan</option>
+<option value="AU">Australia</option>
+<option value="AT">Austria</option>
+<option value="AZ">Azerbaijan</option>
 <option value="BS">Bahamas</option>
-<option value="BH">Bahreïn</option>
+<option value="BH">Bahrain</option>
 <option value="BD">Bangladesh</option>
-<option value="BB">Barbade</option>
-<option value="BE">Belgique</option>
+<option value="BB">Barbados</option>
+<option value="BY">Belarus</option>
+<option value="BE">Belgium</option>
 <option value="BZ">Belize</option>
-<option value="BJ">Bénin</option>
-<option value="BM">Bermudes</option>
-<option value="BT">Bhoutan</option>
-<option value="BY">Biélorussie</option>
-<option value="MM">Birmanie</option>
-<option value="BO">Bolivie, État plurinational</option>
-<option value="BQ">Bonaire, Saint-Eustache et Saba</option>
-<option value="BA">Bosnie-Herzégovine</option>
+<option value="BJ">Benin</option>
+<option value="BM">Bermuda</option>
+<option value="BT">Bhutan</option>
+<option value="BO">Bolivia</option>
+<option value="BA">Bosnia &amp; Herzegovina</option>
 <option value="BW">Botswana</option>
-<option value="BR">Brésil</option>
-<option value="BN">Brunéi Darussalam</option>
-<option value="BG">Bulgarie</option>
+<option value="BV">Bouvet Island</option>
+<option value="BR">Brazil</option>
+<option value="IO">British Indian Ocean Territory</option>
+<option value="VG">British Virgin Islands</option>
+<option value="BN">Brunei</option>
+<option value="BG">Bulgaria</option>
 <option value="BF">Burkina Faso</option>
 <option value="BI">Burundi</option>
-<option value="KH">Cambodge</option>
-<option value="CM">Cameroun</option>
+<option value="KH">Cambodia</option>
+<option value="CM">Cameroon</option>
 <option value="CA">Canada</option>
-<option value="CV">Cap-Vert</option>
-<option value="CL">Chili</option>
-<option value="CN">Chine</option>
-<option value="CY">Chypre</option>
-<option value="CO">Colombien</option>
-<option value="KM">Comores</option>
+<option value="CV">Cape Verde</option>
+<option value="BQ">Caribbean Netherlands</option>
+<option value="KY">Cayman Islands</option>
+<option value="CF">Central African Republic</option>
+<option value="TD">Chad</option>
+<option value="CL">Chile</option>
+<option value="CN">China</option>
+<option value="CX">Christmas Island</option>
+<option value="CC">Cocos (Keeling) Islands</option>
+<option value="CO">Colombia</option>
+<option value="KM">Comoros</option>
 <option value="CG">Congo</option>
-<option value="CD">Congo, République démocratique</option>
-<option value="KR">Corée du Sud</option>
+<option value="CD">Congo (DRC)</option>
+<option value="CK">Cook Islands</option>
 <option value="CR">Costa Rica</option>
-<option value="CI">Côte d&#39;Ivoire</option>
-<option value="HR">Croatie</option>
+<option value="CI">Côte d’Ivoire</option>
+<option value="HR">Croatia</option>
 <option value="CW">Curaçao</option>
-<option value="DK">Danemark</option>
+<option value="CY">Cyprus</option>
+<option value="CZ">Czechia</option>
+<option value="DK">Denmark</option>
 <option value="DJ">Djibouti</option>
-<option value="DM">Dominique</option>
-<option value="EG">Égypte</option>
-<option value="AE">Émirats Arabes Unis</option>
-<option value="EC">Équateur</option>
-<option value="ER">Érythrée</option>
-<option value="ES">Espagne</option>
-<option value="EE">Estonie</option>
+<option value="DM">Dominica</option>
+<option value="DO">Dominican Republic</option>
+<option value="EC">Ecuador</option>
+<option value="EG">Egypt</option>
+<option value="SV">El Salvador</option>
+<option value="GQ">Equatorial Guinea</option>
+<option value="ER">Eritrea</option>
+<option value="EE">Estonia</option>
 <option value="SZ">Eswatini</option>
-<option value="US">États-Unis</option>
-<option value="ET">Éthiopie</option>
-<option value="RU">Fédération de Russie</option>
-<option value="FJ">Fidji</option>
-<option value="FI">Finlande</option>
+<option value="ET">Ethiopia</option>
+<option value="FK">Falkland Islands</option>
+<option value="FO">Faroe Islands</option>
+<option value="FJ">Fiji</option>
+<option value="FI">Finland</option>
 <option value="FR">France</option>
+<option value="GF">French Guiana</option>
+<option value="PF">French Polynesia</option>
+<option value="TF">French Southern Territories</option>
 <option value="GA">Gabon</option>
-<option value="GM">Gambie</option>
-<option value="GE">Géorgie</option>
-<option value="GS">Géorgie du Sud-et-les Îles Sandwich du Sud</option>
+<option value="GM">Gambia</option>
+<option value="GE">Georgia</option>
+<option value="DE">Germany</option>
 <option value="GH">Ghana</option>
 <option value="GI">Gibraltar</option>
-<option value="GR">Grèce</option>
-<option value="GD">Grenade</option>
-<option value="GL">Groenland</option>
+<option value="GR">Greece</option>
+<option value="GL">Greenland</option>
+<option value="GD">Grenada</option>
 <option value="GP">Guadeloupe</option>
 <option value="GT">Guatemala</option>
-<option value="GG">Guernesey</option>
-<option value="GN">Guinée</option>
-<option value="GW">Guinée-Bissau</option>
-<option value="GQ">Guinée équatoriale</option>
+<option value="GG">Guernsey</option>
+<option value="GN">Guinea</option>
+<option value="GW">Guinea-Bissau</option>
 <option value="GY">Guyana</option>
-<option value="GF">Guyane française</option>
-<option value="HT">Haïti</option>
+<option value="HT">Haiti</option>
+<option value="HM">Heard &amp; McDonald Islands</option>
 <option value="HN">Honduras</option>
-<option value="HU">Hongrie</option>
-<option value="BV">Île Bouvet</option>
-<option value="CX">Île Christmas</option>
-<option value="IM">Île de Man</option>
-<option value="NF">Île Norfolk</option>
-<option value="AX">Îles Aland</option>
-<option value="KY">Îles Caïmans</option>
-<option value="CC">Îles Cocos (Keeling)</option>
-<option value="CK">Îles Cook</option>
-<option value="FO">Îles Féroé</option>
-<option value="HM">Îles Heard-et-MacDonald</option>
-<option value="FK">Îles Malouines</option>
-<option value="SB">Îles Solomon</option>
-<option value="TC">Îles Turques-et-Caïques</option>
-<option value="VG">Îles Vierges britanniques</option>
-<option value="IN">Inde</option>
-<option value="ID">Indonésie</option>
+<option value="HU">Hungary</option>
+<option value="IS">Iceland</option>
+<option value="IN">India</option>
+<option value="ID">Indonesia</option>
 <option value="IQ">Iraq</option>
-<option value="IE">Irlande</option>
-<option value="IS">Islande</option>
-<option value="IL">Israël</option>
-<option value="IT">Italie</option>
-<option value="JM">Jamaïque</option>
-<option value="JP">Japon</option>
+<option value="IE">Ireland</option>
+<option value="IM">Isle of Man</option>
+<option value="IL">Israel</option>
+<option value="IT">Italy</option>
+<option value="JM">Jamaica</option>
+<option value="JP">Japan</option>
 <option value="JE">Jersey</option>
-<option value="JO">Jordanie</option>
+<option value="JO">Jordan</option>
 <option value="KZ">Kazakhstan</option>
 <option value="KE">Kenya</option>
 <option value="KI">Kiribati</option>
 <option value="XK">Kosovo</option>
-<option value="KW">Koweït</option>
+<option value="KW">Kuwait</option>
 <option value="KG">Kyrgyzstan</option>
-<option value="LA">Laos, République démocratique populaire lao</option>
+<option value="LA">Laos</option>
+<option value="LV">Latvia</option>
+<option value="LB">Lebanon</option>
 <option value="LS">Lesotho</option>
-<option value="LV">Lettonie</option>
-<option value="LB">Liban</option>
-<option value="LR">Libéria</option>
-<option value="LY">Libye</option>
+<option value="LR">Liberia</option>
+<option value="LY">Libya</option>
 <option value="LI">Liechtenstein</option>
-<option value="LT">Lituanie</option>
+<option value="LT">Lithuania</option>
 <option value="LU">Luxembourg</option>
-<option value="MO">Macao</option>
-<option value="MK">Macédoine du Nord</option>
+<option value="MO">Macao SAR China</option>
 <option value="MG">Madagascar</option>
-<option value="MY">Malaisie</option>
 <option value="MW">Malawi</option>
+<option value="MY">Malaysia</option>
 <option value="MV">Maldives</option>
 <option value="ML">Mali</option>
-<option value="MT">Malte</option>
-<option value="MA">Maroc</option>
+<option value="MT">Malta</option>
 <option value="MQ">Martinique</option>
-<option value="MU">Maurice</option>
-<option value="MR">Mauritanie</option>
+<option value="MR">Mauritania</option>
+<option value="MU">Mauritius</option>
 <option value="YT">Mayotte</option>
-<option value="MX">Mexique</option>
-<option value="MD">Moldavie, République</option>
+<option value="MX">Mexico</option>
+<option value="MD">Moldova</option>
 <option value="MC">Monaco</option>
-<option value="MN">Mongolie</option>
-<option value="ME">Monténégro</option>
+<option value="MN">Mongolia</option>
+<option value="ME">Montenegro</option>
 <option value="MS">Montserrat</option>
+<option value="MA">Morocco</option>
 <option value="MZ">Mozambique</option>
-<option value="NA">Namibie</option>
+<option value="MM">Myanmar</option>
+<option value="NA">Namibia</option>
 <option value="NR">Nauru</option>
-<option value="NP">Népal</option>
+<option value="NP">Nepal</option>
+<option value="NL">Netherlands</option>
+<option value="NC">New Caledonia</option>
+<option value="NZ">New Zealand</option>
 <option value="NI">Nicaragua</option>
 <option value="NE">Niger</option>
-<option value="NG">Nigéria</option>
-<option value="NU">Niué</option>
-<option value="NO">Norvège</option>
-<option value="NC">Nouvelle Calédonie</option>
-<option value="NZ">Nouvelle-Zélande</option>
+<option value="NG">Nigeria</option>
+<option value="NU">Niue</option>
+<option value="NF">Norfolk Island</option>
+<option value="MK">North Macedonia</option>
+<option value="NO">Norway</option>
 <option value="OM">Oman</option>
-<option value="UG">Ouganda</option>
-<option value="UZ">Ouzbékistan</option>
 <option value="PK">Pakistan</option>
 <option value="PS">Palestine</option>
 <option value="PA">Panama</option>
-<option value="PG">Papouasie-Nouvelle-Guinée</option>
+<option value="PG">Papua New Guinea</option>
 <option value="PY">Paraguay</option>
-<option value="NL">Pays-Bas</option>
-<option value="PE">Pérou</option>
+<option value="PE">Peru</option>
 <option value="PH">Philippines</option>
-<option value="PN">Pitcairn</option>
-<option value="PL">Pologne</option>
-<option value="PF">Polynésie française</option>
+<option value="PN">Pitcairn Islands</option>
+<option value="PL">Poland</option>
 <option value="PT">Portugal</option>
 <option value="QA">Qatar</option>
-<option value="CF">République centrafricaine</option>
-<option value="DO">République Dominicaine</option>
 <option value="RE">Réunion</option>
-<option value="RO">Roumanie</option>
-<option value="GB">Royaume-Uni</option>
+<option value="RO">Romania</option>
+<option value="RU">Russia</option>
 <option value="RW">Rwanda</option>
-<option value="EH">Sahara occidental</option>
-<option value="BL">Saint-Barthélemy</option>
-<option value="KN">Saint-Christophe-et-Niévès</option>
-<option value="SH">Sainte-Hélène, Ascension et Tristan da Cunha</option>
-<option value="LC">Sainte Lucie</option>
-<option value="SM">Saint Marin</option>
-<option value="MF">Saint-Martin (partie française)</option>
-<option value="SX">Saint-Martin (Royaume des Pays-Bas)</option>
-<option value="PM">Saint-Pierre-et-Miquelon</option>
-<option value="VA">Saint-Siège (État de la Cité du Vatican)</option>
-<option value="VC">Saint-Vincent-et-les-Grenadines</option>
-<option value="SV">Salvador</option>
 <option value="WS">Samoa</option>
-<option value="ST">Sao Tomé-et-Principe</option>
-<option value="SN">Sénégal</option>
-<option value="RS">Serbie</option>
+<option value="SM">San Marino</option>
+<option value="ST">São Tomé &amp; Príncipe</option>
+<option value="SA">Saudi Arabia</option>
+<option value="SN">Senegal</option>
+<option value="RS">Serbia</option>
 <option value="SC">Seychelles</option>
 <option value="SL">Sierra Leone</option>
-<option value="SG">Singapour</option>
-<option value="SK">Slovaquie</option>
-<option value="SI">Slovénie</option>
-<option value="SO">Somalie</option>
-<option value="SS">Soudan du Sud</option>
+<option value="SG">Singapore</option>
+<option value="SX">Sint Maarten</option>
+<option value="SK">Slovakia</option>
+<option value="SI">Slovenia</option>
+<option value="SB">Solomon Islands</option>
+<option value="SO">Somalia</option>
+<option value="ZA">South Africa</option>
+<option value="GS">South Georgia &amp; South Sandwich Islands</option>
+<option value="KR">South Korea</option>
+<option value="SS">South Sudan</option>
+<option value="ES">Spain</option>
 <option value="LK">Sri Lanka</option>
-<option value="SE">Suède</option>
-<option value="CH">Suisse</option>
+<option value="BL">St. Barthélemy</option>
+<option value="SH">St. Helena</option>
+<option value="KN">St. Kitts &amp; Nevis</option>
+<option value="LC">St. Lucia</option>
+<option value="MF">St. Martin</option>
+<option value="PM">St. Pierre &amp; Miquelon</option>
+<option value="VC">St. Vincent &amp; Grenadines</option>
 <option value="SR">Suriname</option>
-<option value="SJ">Svalbard et Jan Mayen</option>
-<option value="TJ">Tadjikistan</option>
-<option value="TW">Taïwan</option>
-<option value="TZ">Tanzanie, République unie</option>
-<option value="TD">Tchad</option>
-<option value="CZ">Tchéquie</option>
-<option value="TF">Terres australes françaises</option>
-<option value="IO">Territoire britannique de l&#39;océan Indien</option>
-<option value="TH">Thaïlande</option>
+<option value="SJ">Svalbard &amp; Jan Mayen</option>
+<option value="SE">Sweden</option>
+<option value="CH">Switzerland</option>
+<option value="TW">Taiwan</option>
+<option value="TJ">Tajikistan</option>
+<option value="TZ">Tanzania</option>
+<option value="TH">Thailand</option>
 <option value="TL">Timor-Leste</option>
 <option value="TG">Togo</option>
 <option value="TK">Tokelau</option>
 <option value="TO">Tonga</option>
-<option value="TT">Trinité-et-Tobago</option>
-<option value="TN">Tunisie</option>
-<option value="TM">Turkménistan</option>
-<option value="TR">Turquie</option>
+<option value="TT">Trinidad &amp; Tobago</option>
+<option value="TN">Tunisia</option>
+<option value="TR">Türkiye</option>
+<option value="TM">Turkmenistan</option>
+<option value="TC">Turks &amp; Caicos Islands</option>
 <option value="TV">Tuvalu</option>
+<option value="UG">Uganda</option>
 <option value="UA">Ukraine</option>
+<option value="AE">United Arab Emirates</option>
+<option value="GB">United Kingdom</option>
+<option value="US">United States</option>
 <option value="UY">Uruguay</option>
+<option value="UZ">Uzbekistan</option>
 <option value="VU">Vanuatu</option>
-<option value="VE">Venezuela, République Bolivarienne</option>
+<option value="VA">Vatican City</option>
+<option value="VE">Venezuela</option>
 <option value="VN">Vietnam</option>
-<option value="WF">Wallis-et-Futuna</option>
-<option value="YE">Yémen</option>
-<option value="ZM">Zambie</option>
+<option value="WF">Wallis &amp; Futuna</option>
+<option value="EH">Western Sahara</option>
+<option value="YE">Yemen</option>
+<option value="ZM">Zambia</option>
 <option value="ZW">Zimbabwe</option>
 </select>
 </div>
 
 <div class="field">
-    <label for="city">Ville</label>
-    <input id="city" maxlength="40" name="city" type="text" placeholder="Ville" />
+    <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+    <label for="city">City</label>
+    <input id="city" maxlength="40" name="city" type="text" autocomplete="address-level2" placeholder="Casablanca" />
 </div>
 
+<div class="field field-full field-area">
+    <svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>
+    <label for="description">Your Message</label>
+    <textarea id="description" name="description" rows="3" maxlength="32000" placeholder="Tell us what you need: volumes, delivery area, questions…"></textarea>
+</div>
+
+<label class="consent">
+    <input type="checkbox" required />
+    <span>I agree to the processing of my data so Aquafina can contact me.</span>
+</label>
 
 <input type="hidden" id="lead_source" name="lead_source" value="Web" />
 
-<button type="submit" name="submit">Envoyer</button>
+<button type="submit" name="submit">Submit <svg class="ico ico-line" aria-hidden="true"><use href="#i-chevron"/></svg></button>
 
 </form>
 
@@ -358,9 +417,30 @@
 
 </main>
 
-<svg class="waves" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
-    <path class="wave w1" d="M0,100 C240,160 480,40 720,100 C960,160 1200,40 1440,100 L1440,200 L0,200 Z"/>
-    <path class="wave w2" d="M0,130 C240,80 480,180 720,130 C960,80 1200,180 1440,130 L1440,200 L0,200 Z"/>
-</svg>
+<footer class="trust">
+    <svg class="trust-wave" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+            <linearGradient id="tw-fill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2f86ee"/>
+                <stop offset="1" stop-color="#145fd6"/>
+            </linearGradient>
+            <linearGradient id="tw-shine" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#d4efff" stop-opacity="0"/>
+                <stop offset=".55" stop-color="#b6e2ff" stop-opacity=".55"/>
+                <stop offset="1" stop-color="#fff" stop-opacity=".95"/>
+            </linearGradient>
+        </defs>
+        <path d="M0 44C240 18 520 14 760 30s460 20 680-16v146H0z" fill="url(#tw-fill)"/>
+        <path d="M600 160c300-18 580-80 840-132v132z" fill="url(#tw-shine)" opacity=".7"/>
+        <path d="M0 44C240 18 520 14 760 30s460 20 680-16" fill="none" stroke="#c4e8ff" stroke-opacity=".9" stroke-width="2" vector-effect="non-scaling-stroke"/>
+        <path d="M0 60C300 36 560 34 800 48s440 16 640-14" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+    </svg>
+    <ul class="trust-list">
+        <li><svg class="ico ico-line" aria-hidden="true"><use href="#i-shield"/></svg>Trusted Quality</li>
+        <li><svg class="ico ico-line" aria-hidden="true"><use href="#i-drop"/></svg>Pure Refreshment</li>
+        <li><svg class="ico ico-line" aria-hidden="true"><use href="#i-smile"/></svg>A Healthier Tomorrow</li>
+    </ul>
+</footer>
+
 </body>
 </html>
